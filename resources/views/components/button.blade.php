@@ -15,12 +15,12 @@
     ][$size] ?? 'text-sm px-5 py-2.5 gap-2';
 
     $variantClasses = [
-        'primary' => 'bg-brand-600 text-white hover:bg-brand-700 shadow-sm hover:shadow focus:ring-brand-500',
-        'dark' => 'bg-brand-dark text-white hover:bg-slate-800 shadow-sm hover:shadow focus:ring-slate-900',
-        'secondary' => 'bg-slate-100 text-slate-800 hover:bg-slate-200 focus:ring-slate-400',
-        'outline' => 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-400 focus:ring-brand-500',
-        'white' => 'bg-white text-brand-dark hover:bg-slate-100 shadow-sm focus:ring-white',
-    ][$variant] ?? 'bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500';
+        'primary' => 'bg-[#A7C123] text-[#242619] hover:bg-[#D8F741] font-bold shadow-sm hover:shadow focus:ring-[#A7C123]',
+        'dark' => 'bg-[#242619] text-white hover:bg-[#A7C123] hover:text-[#242619] font-bold shadow-sm hover:shadow focus:ring-[#242619]',
+        'secondary' => 'bg-[#F8FAF0] text-[#242619] hover:bg-[#F1F7D7] border border-[#A7C123]/30 focus:ring-[#A7C123]',
+        'outline' => 'border border-[#A7C123]/40 bg-white text-[#242619] hover:bg-[#F8FAF0] hover:border-[#A7C123] focus:ring-[#A7C123]',
+        'white' => 'bg-white text-[#242619] hover:bg-[#F8FAF0] shadow-sm focus:ring-white',
+    ][$variant] ?? 'bg-[#A7C123] text-[#242619] hover:bg-[#D8F741] focus:ring-[#A7C123]';
 
     $classes = "$baseClasses $sizeClasses $variantClasses";
 @endphp

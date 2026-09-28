@@ -234,74 +234,98 @@ class HomeController extends Controller
         $serviceCatalog = [
             [
                 'id' => 1,
-                'title' => 'Création de Logo & Identité Visuelle',
+                'title' => 'Création de Logo & Identité Visuelle Complète',
                 'category' => 'Design & Branding',
+                'category_slug' => 'design',
                 'price' => '25 000 FCFA',
-                'price_type' => 'À partir de',
+                'old_price' => '45 000 FCFA',
+                'price_type' => 'Forfait dès',
                 'delay' => '4 à 7 jours',
                 'talent' => 'Kévin A.',
                 'rating' => '4.9',
-                'description' => '3 propositions de concepts, fichiers vectoriels HD (PNG, SVG, AI) et guide d’utilisation des couleurs.',
-                'badge' => 'Populaire'
+                'reviews_count' => 38,
+                'image' => 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=700&h=420&q=80',
+                'description' => '3 propositions uniques, charte chromatique, typographies et fichiers vectoriels HD (PNG, SVG, AI).',
+                'badge' => 'Meilleure vente'
             ],
             [
                 'id' => 2,
-                'title' => 'Site Vitrine Professionnel Moderne',
+                'title' => 'Site Vitrine Professionnel Moderne & Responsive',
                 'category' => 'Développement Web',
+                'category_slug' => 'tech',
                 'price' => '120 000 FCFA',
-                'price_type' => 'À partir de',
+                'old_price' => '180 000 FCFA',
+                'price_type' => 'Forfait dès',
                 'delay' => '10 à 15 jours',
                 'talent' => 'Amina S.',
                 'rating' => '5.0',
-                'description' => 'Design sur-mesure responsive, formulaire de contact, optimisation SEO mobile et nom de domaine configuré.',
+                'reviews_count' => 46,
+                'image' => 'https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=700&h=420&q=80',
+                'description' => 'Architecture moderne sur-mesure, formulaire de contact interactif, SEO local et mobile-first garanti.',
                 'badge' => 'Recommandé'
             ],
             [
                 'id' => 3,
-                'title' => 'Pack 5 Vidéos Courtes (Reels / TikTok)',
+                'title' => 'Pack 5 Vidéos Courtes Virales (Reels / TikTok)',
                 'category' => 'Vidéo & Média',
+                'category_slug' => 'media',
                 'price' => '35 000 FCFA',
-                'price_type' => 'À partir de',
+                'old_price' => '60 000 FCFA',
+                'price_type' => 'Forfait dès',
                 'delay' => '3 à 5 jours',
                 'talent' => 'Farid D.',
                 'rating' => '4.8',
-                'description' => 'Montage dynamique avec sous-titres animés, musique tendance et effets d’attention pour booster vos réseaux.',
+                'reviews_count' => 29,
+                'image' => 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=700&h=420&q=80',
+                'description' => 'Montage dynamique haute rétention, sous-titres animés, sound design percutant et formats 9:16.',
                 'badge' => 'Tendance'
             ],
             [
                 'id' => 4,
-                'title' => 'Audit & Stratégie Publicitaire Meta Ads',
+                'title' => 'Campagnes Publicitaires Meta & Google Ads',
                 'category' => 'Marketing Digital',
+                'category_slug' => 'marketing',
                 'price' => '40 000 FCFA',
-                'price_type' => 'À partir de',
+                'old_price' => '70 000 FCFA',
+                'price_type' => 'Forfait dès',
                 'delay' => '3 jours',
                 'talent' => 'Grace M.',
                 'rating' => '4.9',
-                'description' => 'Analyse approfondie de votre compte publicitaire, recommandations de ciblage et plan média pour rentabiliser vos pubs.',
-                'badge' => 'Conversion'
+                'reviews_count' => 22,
+                'image' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&h=420&q=80',
+                'description' => 'Ciblage d’audience précis au Bénin/Afrique de l’Ouest, création des créatifs publicitaires et suivi ROI.',
+                'badge' => 'Meilleure vente'
             ],
             [
                 'id' => 5,
-                'title' => 'Design UI/UX Mobile (10 Écrans Figma)',
+                'title' => 'Design UI/UX Mobile Complet (Figma Prototype)',
                 'category' => 'Product Design',
+                'category_slug' => 'design',
                 'price' => '75 000 FCFA',
-                'price_type' => 'À partir de',
+                'old_price' => '120 000 FCFA',
+                'price_type' => 'Forfait dès',
                 'delay' => '7 à 10 jours',
                 'talent' => 'Rolande K.',
                 'rating' => '5.0',
-                'description' => 'Wireframes, maquettes interactives haute fidélité et composants réutilisables prêts pour les développeurs.',
+                'reviews_count' => 31,
+                'image' => 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=700&h=420&q=80',
+                'description' => '10 écrans mobiles interactifs, design system modulaire avec composants réutilisables et export développeur.',
                 'badge' => 'Premium'
             ],
             [
                 'id' => 6,
-                'title' => 'Automatisation Devis & Factures (Make/Zapier)',
+                'title' => 'Automatisation Devis, Factures & CRM (Make/Zapier)',
                 'category' => 'No-Code & IA',
+                'category_slug' => 'tech',
                 'price' => '45 000 FCFA',
-                'price_type' => 'À partir de',
+                'old_price' => '85 000 FCFA',
+                'price_type' => 'Forfait dès',
                 'delay' => '4 jours',
                 'talent' => 'Sébastien T.',
                 'rating' => '4.8',
-                'description' => 'Génération automatique de PDF à la validation d’un formulaire et notification instantanée par email/WhatsApp.',
+                'reviews_count' => 19,
+                'image' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&h=420&q=80',
+                'description' => 'Connexion de vos formulaires avec génération PDF instantanée et alertes WhatsApp automatiques pour vos prospects.',
                 'badge' => 'Gain de temps'
             ]
         ];
@@ -309,30 +333,130 @@ class HomeController extends Controller
         $opportunities = [
             [
                 'id' => 1,
-                'type' => 'Mission Freelance',
-                'title' => 'Refonte UX/UI d’une application de paiement local',
+                'type' => 'Mission Tech & SaaS',
+                'title' => 'Développeur Fullstack Laravel & React pour Fintech',
                 'client' => 'FinTech Béninoise · Cotonou',
-                'budget' => '300 000 - 450 000 FCFA',
-                'duration' => '3 semaines',
-                'tags' => ['Figma', 'UI/UX', 'Mobile']
+                'client_name' => 'Fidèle K. (CTO)',
+                'client_avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80',
+                'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&h=380&q=80',
+                'badge' => '100% Télétravail',
+                'urgent' => true,
+                'rating' => '4.9',
+                'applicants_count' => 18,
+                'budget' => '450 000 FCFA / mois',
+                'duration' => '3 mois renouvelables',
+                'tags' => ['Laravel 11', 'React', 'PostgreSQL', 'API']
             ],
             [
                 'id' => 2,
-                'type' => 'Contrat de Mission',
-                'title' => 'Développeur Backend Laravel pour API de livraison',
-                'client' => 'Startup Logistique · Abomey-Calavi',
-                'budget' => '250 000 FCFA / mois',
-                'duration' => '2 mois renouvelables',
-                'tags' => ['Laravel', 'MySQL', 'API REST']
+                'type' => 'Product Design',
+                'title' => 'Lead UI/UX Designer pour refonte d’application mobile',
+                'client' => 'Startup Logistique · Calavi',
+                'client_name' => 'Carine D. (Head of Product)',
+                'client_avatar' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&h=120&q=80',
+                'image' => 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&h=380&q=80',
+                'badge' => 'Mission Ouverte',
+                'urgent' => false,
+                'rating' => '5.0',
+                'applicants_count' => 12,
+                'budget' => '380 000 FCFA (Forfait)',
+                'duration' => '4 semaines',
+                'tags' => ['Figma', 'Design System', 'Mobile iOS/Android']
             ],
             [
                 'id' => 3,
-                'type' => 'Collaboration Créative',
-                'title' => 'Production vidéo & storytelling pour lancement de marque',
+                'type' => 'Média & Croissance',
+                'title' => 'Directeur Artistique & Monteur Vidéo Formats Courts (Reels)',
                 'client' => 'Marque Agroalimentaire Locale',
-                'budget' => '180 000 FCFA',
-                'duration' => '10 jours',
-                'tags' => ['Tournage', 'Montage', 'Motion']
+                'client_name' => 'Gilles B. (Marketing Lead)',
+                'client_avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=80',
+                'image' => 'https://images.unsplash.com/photo-1616469829941-c7200edec809?auto=format&fit=crop&w=600&h=380&q=80',
+                'badge' => 'Temps Partiel',
+                'urgent' => true,
+                'rating' => '4.8',
+                'applicants_count' => 9,
+                'budget' => '220 000 FCFA / mois',
+                'duration' => 'Contrat 6 mois',
+                'tags' => ['Premiere Pro', 'Motion Design', 'TikTok/Reels']
+            ]
+        ];
+
+        $testimonials = [
+            'stories' => [
+                [
+                    'id' => 1,
+                    'image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&h=700&q=80',
+                    'company' => 'FinTech Bénin Hub',
+                    'tagline' => 'Comment Puno a automatisé 80% de sa gestion des leads',
+                    'author' => 'David Lee',
+                    'role' => 'Directeur Général, Puno Tech'
+                ],
+                [
+                    'id' => 2,
+                    'image' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&h=700&q=80',
+                    'company' => 'SaaS Logistics West',
+                    'tagline' => 'Mise à l’échelle de nos opérations grâce aux développeurs vérifiés',
+                    'author' => 'Nathalie Mensah',
+                    'role' => 'Co-fondatrice, SwiftLog Bénin'
+                ]
+            ],
+            'quotes' => [
+                [
+                    'id' => 1,
+                    'name' => 'David Lee',
+                    'role' => 'Fondateur, Studio Digit',
+                    'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80',
+                    'quote' => 'Nous passions des semaines sur des recrutements hasardeux. Leur système automatisé nous a fait économiser plus de 30 heures par mois et a transformé notre livraison client.',
+                    'col' => 1
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'Daniel Kim',
+                    'role' => 'Directeur, ScaleLabs Africa',
+                    'avatar' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80',
+                    'quote' => 'Notre processus d’onboarding exigeait un suivi manuel permanent. Grâce aux talents mobilisés via Talent Club, notre taux de conversion a bondi de 35% en un seul trimestre.',
+                    'col' => 1
+                ],
+                [
+                    'id' => 3,
+                    'name' => 'Alex Johnson',
+                    'role' => 'Head of Operations, Finovate Bénin',
+                    'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80',
+                    'quote' => 'La sécurité et la conformité étaient nos priorités absolues. L’architecture conçue par l’équipe est robuste, scalable et de niveau international.',
+                    'col' => 1
+                ],
+                [
+                    'id' => 4,
+                    'name' => 'Sarah Mitchell',
+                    'role' => 'COO, BrightPath Solutions',
+                    'avatar' => 'https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&w=150&h=150&q=80',
+                    'quote' => 'Nous avions des difficultés de rétention et de suivi client. Les experts ont instauré des workflows clairs qui ont réduit nos frictions de 40% dès le premier mois.',
+                    'col' => 2
+                ],
+                [
+                    'id' => 5,
+                    'name' => 'Jonathan Reed',
+                    'role' => 'Managing Director, Nexora Digital Agency',
+                    'avatar' => 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=150&h=150&q=80',
+                    'quote' => 'Notre croissance était rapide mais nous étions noyés dans l’exécution. Talent Club a unifié nos outils et nous a fait gagner 30+ heures par semaine sur nos pipelines.',
+                    'col' => 2
+                ],
+                [
+                    'id' => 6,
+                    'name' => 'Michael Tran',
+                    'role' => 'CEO, Skyline Realty Group',
+                    'avatar' => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&h=150&q=80',
+                    'quote' => 'Nous avons divisé le temps administratif par deux et doublé nos rendez-vous clients qualifiés. Le retour sur investissement a été immédiat.',
+                    'col' => 3
+                ],
+                [
+                    'id' => 7,
+                    'name' => 'Laura Martinez',
+                    'role' => 'CMO, Elevate Commerce Co.',
+                    'avatar' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80',
+                    'quote' => 'Le marketing automation était fragmenté avec trop d’outils disjoints. Ils ont réuni l’écosystème : alertes automatiques, scoring et relances avec une précision chirurgicale.',
+                    'col' => 3
+                ]
             ]
         ];
 
@@ -341,7 +465,23 @@ class HomeController extends Controller
             'categories',
             'featuredTalents',
             'serviceCatalog',
-            'opportunities'
+            'opportunities',
+            'testimonials'
         ));
+    }
+
+    public function contact(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:120',
+            'email' => 'required|email|max:150',
+            'role' => 'nullable|string|max:50',
+            'message' => 'required|string|min:10|max:2000',
+        ]);
+
+        // Simuler la réception réussie du contact avec log
+        \Illuminate\Support\Facades\Log::info('Nouveau message de contact reçu', $validated);
+
+        return redirect()->to(url('/#contact'))->with('contact_success', 'Merci ' . $validated['name'] . ' ! Votre message a bien été reçu. Notre équipe vous recontactera sous 24h.');
     }
 }

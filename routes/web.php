@@ -5,6 +5,7 @@ use App\Http\Controllers\TalentApplicationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/contact', [HomeController::class, 'contact'])->name('contact.submit');
 
 // Talent Club Application Workflow Routes
 Route::prefix('rejoindre')->name('talent.application.')->group(function () {

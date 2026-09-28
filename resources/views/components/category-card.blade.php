@@ -1,10 +1,10 @@
 @props(['category'])
 
-<a href="#recherche" class="group bg-white rounded-2xl p-6 border border-slate-200/90 hover:border-brand-500 hover:shadow-lg transition-all duration-200 flex flex-col justify-between block relative overflow-hidden">
+<a href="#recherche" class="group bg-white rounded-2xl p-6 border border-slate-200/90 hover:border-[#A7C123] hover:shadow-lg transition-all duration-200 flex flex-col justify-between block relative overflow-hidden">
     <div>
         <!-- Icon & Count Header -->
         <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 rounded-xl bg-slate-100 group-hover:bg-brand-50 text-slate-800 group-hover:text-brand-600 flex items-center justify-center transition-colors duration-200">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 group-hover:bg-[#F1F7D7] text-slate-800 group-hover:text-[#242619] flex items-center justify-center transition-colors duration-200">
                 @switch($category['icon'])
                     @case('code')
                         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -43,12 +43,12 @@
                 @endswitch
             </div>
 
-            <span class="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 group-hover:bg-brand-500/10 group-hover:text-brand-700 transition-colors">
+            <span class="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 group-hover:bg-[#F1F7D7] group-hover:text-[#242619] transition-colors">
                 {{ $category['count'] }} talents
             </span>
         </div>
 
-        <h4 class="font-display font-bold text-base text-slate-900 group-hover:text-brand-600 transition-colors mb-1.5">
+        <h4 class="font-display font-bold text-base text-[#242619] group-hover:text-[#A7C123] transition-colors mb-1.5">
             {{ $category['name'] }}
         </h4>
 

@@ -18,42 +18,27 @@
 {{-- ===== MULTI-STEP FORM ===== --}}
 <div class="postuler-wrapper" x-data="{ step: {{ $currentStep }} }">
 
-    {{-- HEADER --}}
-    <div class="postuler-header">
-        <a href="{{ url('/') }}" class="postuler-logo">TALENT<span>.</span>CLUB</a>
-        <div class="postuler-tagline">Rejoignez l'élite des talents béninois</div>
-    </div>
-
-    {{-- PROGRESS BAR --}}
-    <div class="progress-container">
-        <div class="progress-track">
-            <div class="progress-fill" style="width: {{ (($currentStep - 1) / ($totalSteps - 1)) * 100 }}%"></div>
+    {{-- MINIMALIST STEPPER (IMAGE 2 STYLE) --}}
+    <div class="minimal-stepper-container">
+        <div class="minimal-stepper-track">
+            <div class="minimal-stepper-fill" style="width: {{ (($currentStep - 1) / ($totalSteps - 1)) * 100 }}%"></div>
         </div>
-        <div class="steps-list">
-            @php
-                $stepLabels = [
-                    1 => ['icon' => '👤', 'label' => 'Identité'],
-                    2 => ['icon' => '💼', 'label' => 'Profil'],
-                    3 => ['icon' => '🏆', 'label' => 'Réalisations'],
-                    4 => ['icon' => '🌐', 'label' => 'En ligne'],
-                    5 => ['icon' => '🎯', 'label' => 'Objectifs'],
-                    6 => ['icon' => '✅', 'label' => 'Validation'],
-                ];
-            @endphp
-            @foreach($stepLabels as $n => $info)
+        <div class="minimal-stepper-steps">
+            @for($n = 1; $n <= $totalSteps; $n++)
                 <button
                     type="button"
                     wire:click="goToStep({{ $n }})"
-                    class="step-dot {{ $currentStep == $n ? 'active' : '' }} {{ $currentStep > $n ? 'done' : '' }}"
+                    class="minimal-step-node {{ $currentStep == $n ? 'active' : '' }} {{ $currentStep > $n ? 'done' : '' }}"
                     @if($currentStep <= $n) disabled @endif
-                    title="{{ $info['label'] }}"
+                    title="Étape {{ $n }}"
                 >
-                    <span class="dot-icon">{{ $currentStep > $n ? '✓' : $info['icon'] }}</span>
-                    <span class="dot-label">{{ $info['label'] }}</span>
+                    <span class="node-bullet"></span>
                 </button>
-            @endforeach
+            @endfor
         </div>
-        <div class="step-counter">Étape {{ $currentStep }} / {{ $totalSteps }}</div>
+        <div class="minimal-step-label-row">
+            <span class="step-badge">Étape {{ $currentStep }} sur {{ $totalSteps }}</span>
+        </div>
     </div>
 
     {{-- FORM CONTENT --}}
@@ -64,7 +49,7 @@
         <div class="alert-errors" x-data="{}" x-init="$el.scrollIntoView({ behavior: 'smooth', block: 'center' })">
             <div class="alert-icon">⚠️</div>
             <div>
-                <strong>Veuillez corriger les erreurs suivantes :</strong>
+                <strong>Veuillez compléter ou corriger les champs requis :</strong>
                 <ul>
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -74,13 +59,12 @@
         </div>
         @endif
 
-        {{-- ==================== STEP 1 : Informations personnelles ==================== --}}
+        {{-- ==================== STEP 1 : Informations personnelles (Image 2 style) ==================== --}}
         @if($currentStep === 1)
         <div class="form-step">
-            <div class="step-heading">
-                <div class="step-icon-big">👤</div>
-                <h2>Vos informations personnelles</h2>
-                <p>Commençons par faire connaissance. Ces informations resteront confidentielles.</p>
+            <div class="step-heading-minimal">
+                <h2 class="form-title">Commençons</h2>
+                <p class="form-subtitle">Renseignez vos coordonnées de base pour initialiser votre profil de talent.</p>
             </div>
 
             <div class="photo-upload-zone" wire:click="$dispatch('click-upload')">
@@ -89,8 +73,8 @@
                 @else
                     <div class="photo-placeholder">
                         <span class="photo-icon">📷</span>
-                        <span>Cliquez pour ajouter votre photo</span>
-                        <span class="photo-hint">JPG, PNG — max 2Mo (optionnel)</span>
+                        <span class="photo-title">Photo de profil</span>
+                        <span class="photo-hint">JPG, PNG · max 2Mo (optionnel)</span>
                     </div>
                 @endif
                 <input type="file" wire:model="profile_photo" id="profile_photo_input" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;">
@@ -100,33 +84,26 @@
             <div class="form-grid-2">
                 <div class="field-group">
                     <label for="first_name">Prénom <span class="required">*</span></label>
-                    <input type="text" id="first_name" wire:model.live="first_name" placeholder="Ex: Kofi" class="{{ $errors->has('first_name') ? 'input-error' : '' }}">
+                    <input type="text" id="first_name" wire:model.live="first_name" placeholder="Ex: Koffi" class="{{ $errors->has('first_name') ? 'input-error' : '' }}">
                     @error('first_name')<span class="field-error">{{ $message }}</span>@enderror
                 </div>
                 <div class="field-group">
                     <label for="last_name">Nom de famille <span class="required">*</span></label>
-                    <input type="text" id="last_name" wire:model.live="last_name" placeholder="Ex: Agossou" class="{{ $errors->has('last_name') ? 'input-error' : '' }}">
+                    <input type="text" id="last_name" wire:model.live="last_name" placeholder="Ex: Dossou" class="{{ $errors->has('last_name') ? 'input-error' : '' }}">
                     @error('last_name')<span class="field-error">{{ $message }}</span>@enderror
                 </div>
             </div>
 
-            <div class="form-grid-2">
-                <div class="field-group">
-                    <label for="email">Adresse email <span class="required">*</span></label>
-                    <input type="email" id="email" wire:model.live="email" placeholder="votre@email.com" class="{{ $errors->has('email') ? 'input-error' : '' }}">
-                    @error('email')<span class="field-error">{{ $message }}</span>@enderror
-                </div>
-                <div class="field-group">
-                    <label for="phone">Téléphone <span class="required">*</span></label>
-                    <input type="tel" id="phone" wire:model.live="phone" placeholder="+229 97 XX XX XX" class="{{ $errors->has('phone') ? 'input-error' : '' }}">
-                    @error('phone')<span class="field-error">{{ $message }}</span>@enderror
-                </div>
+            <div class="field-group">
+                <label for="email">Adresse email <span class="required">*</span></label>
+                <input type="email" id="email" wire:model.live="email" placeholder="koffi.dossou@example.com" class="{{ $errors->has('email') ? 'input-error' : '' }}">
+                @error('email')<span class="field-error">{{ $message }}</span>@enderror
             </div>
 
             <div class="form-grid-2">
                 <div class="field-group">
-                    <label for="city">Ville / Localité <span class="required">*</span></label>
-                    <input type="text" id="city" wire:model.live="city" placeholder="Ex: Cotonou, Porto-Novo..." class="{{ $errors->has('city') ? 'input-error' : '' }}">
+                    <label for="city">Pays / Ville ou Localité <span class="required">*</span></label>
+                    <input type="text" id="city" wire:model.live="city" placeholder="Cotonou, Bénin" class="{{ $errors->has('city') ? 'input-error' : '' }}">
                     @error('city')<span class="field-error">{{ $message }}</span>@enderror
                 </div>
                 <div class="field-group">
@@ -140,16 +117,21 @@
                     @error('age_range')<span class="field-error">{{ $message }}</span>@enderror
                 </div>
             </div>
+
+            <div class="field-group">
+                <label for="phone">Numéro de téléphone <span class="required">*</span></label>
+                <input type="tel" id="phone" wire:model.live="phone" placeholder="+229 97 00 00 00" class="{{ $errors->has('phone') ? 'input-error' : '' }}">
+                @error('phone')<span class="field-error">{{ $message }}</span>@enderror
+            </div>
         </div>
         @endif
 
         {{-- ==================== STEP 2 : Profil professionnel ==================== --}}
         @if($currentStep === 2)
         <div class="form-step">
-            <div class="step-heading">
-                <div class="step-icon-big">💼</div>
-                <h2>Votre profil professionnel</h2>
-                <p>Parlez-nous de votre activité et de ce qui vous distingue.</p>
+            <div class="step-heading-minimal">
+                <h2 class="form-title">Profil & Expertise</h2>
+                <p class="form-subtitle">Détaillez vos domaines de compétences et votre parcours professionnel.</p>
             </div>
 
             <div class="field-group">
@@ -188,17 +170,7 @@
                 @error('featured_achievement')<span class="field-error">{{ $message }}</span>@enderror
             </div>
 
-            <div class="field-group">
-                <label>Vos compétences clés (optionnel)</label>
-                <div class="tags-grid">
-                    @foreach($skills as $skill)
-                        <label class="tag-choice {{ in_array($skill->id, $selected_skills) ? 'selected' : '' }}">
-                            <input type="checkbox" wire:model.live="selected_skills" value="{{ $skill->id }}" style="display:none">
-                            {{ $skill->name }}
-                        </label>
-                    @endforeach
-                </div>
-            </div>
+
 
             <div class="field-group">
                 <label>Catégorie(s) de talent (optionnel)</label>
@@ -217,10 +189,9 @@
         {{-- ==================== STEP 3 : Réalisations / Portfolio ==================== --}}
         @if($currentStep === 3)
         <div class="form-step">
-            <div class="step-heading">
-                <div class="step-icon-big">🏆</div>
-                <h2>Vos réalisations & portfolio</h2>
-                <p>Partagez vos projets concrets. Cela renforce considérablement votre candidature.</p>
+            <div class="step-heading-minimal">
+                <h2 class="form-title">Réalisations & Portfolio</h2>
+                <p class="form-subtitle">Présentez vos réalisations phares pour faire la différence auprès des recruteurs.</p>
             </div>
 
             @if(count($projects) === 0)
@@ -274,10 +245,9 @@
         {{-- ==================== STEP 4 : Présence en ligne ==================== --}}
         @if($currentStep === 4)
         <div class="form-step">
-            <div class="step-heading">
-                <div class="step-icon-big">🌐</div>
-                <h2>Votre présence en ligne</h2>
-                <p>Partagez vos réseaux pour que les recruteurs puissent mieux vous découvrir. (Optionnel)</p>
+            <div class="step-heading-minimal">
+                <h2 class="form-title">Présence en ligne</h2>
+                <p class="form-subtitle">Partagez vos profils et plateformes où l'on peut explorer vos travaux.</p>
             </div>
 
             <div class="form-grid-2">
@@ -349,10 +319,9 @@
         {{-- ==================== STEP 5 : Objectifs & Opportunités ==================== --}}
         @if($currentStep === 5)
         <div class="form-step">
-            <div class="step-heading">
-                <div class="step-icon-big">🎯</div>
-                <h2>Vos objectifs et ambitions</h2>
-                <p>Aidez-nous à comprendre vos aspirations pour mieux vous accompagner.</p>
+            <div class="step-heading-minimal">
+                <h2 class="form-title">Disponibilité & Ambitions</h2>
+                <p class="form-subtitle">Indiquez votre rythme souhaité et vos motivations pour rejoindre le club.</p>
             </div>
 
             <div class="field-group">
@@ -420,10 +389,9 @@
         {{-- ==================== STEP 6 : Vérification & Soumission ==================== --}}
         @if($currentStep === 6)
         <div class="form-step">
-            <div class="step-heading">
-                <div class="step-icon-big">✅</div>
-                <h2>Vérification finale</h2>
-                <p>Relisez votre candidature avant de la soumettre définitivement.</p>
+            <div class="step-heading-minimal">
+                <h2 class="form-title">Vérification & Finalisation</h2>
+                <p class="form-subtitle">Prenez un instant pour vérifier vos informations avant la soumission.</p>
             </div>
 
             <div class="review-sections">
@@ -514,7 +482,7 @@
                     ← Précédent
                 </button>
             @else
-                <a href="{{ url('/') }}" class="btn-prev">← Retour</a>
+                <a href="{{ url('/') }}" class="btn-prev">← Accueil</a>
             @endif
 
             @if($currentStep < $totalSteps)
@@ -524,7 +492,7 @@
                 </button>
             @else
                 <button type="submit" class="btn-submit" wire:loading.attr="disabled">
-                    <span wire:loading.remove wire:target="submitApplication">🚀 Soumettre ma candidature</span>
+                    <span wire:loading.remove wire:target="submitApplication">Postuler maintenant →</span>
                     <span wire:loading wire:target="submitApplication">⏳ Envoi en cours...</span>
                 </button>
             @endif
@@ -536,170 +504,121 @@
 @endif
 
 <style>
+/* Card Wrapper (Image 2 style: clean, airy, sleek border) */
 .postuler-wrapper {
-    max-width: 820px;
-    margin: 2rem auto;
+    max-width: 680px;
+    margin: 1.5rem auto 3rem auto;
     background: #ffffff;
-    border-radius: 24px;
-    padding: 2.5rem;
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0,0,0,0.05);
-    border: 1px solid #e2e8f0;
+    border-radius: 28px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0,0,0,0.03);
+    border: 1px solid #E2E8F0;
+    font-family: 'Montserrat', sans-serif;
 }
 @media (max-width: 640px) {
     .postuler-wrapper {
-        padding: 1.5rem 1rem;
-        margin: 1rem auto;
-        border-radius: 16px;
+        padding: 2rem 1.25rem;
+        margin: 1rem auto 2rem auto;
+        border-radius: 20px;
     }
 }
 
-.postuler-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #f1f5f9;
-}
-.postuler-logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #0f172a;
-    text-decoration: none;
-    letter-spacing: -0.02em;
-}
-.postuler-logo span {
-    color: #059669;
-}
-.postuler-tagline {
-    font-size: 0.875rem;
-    color: #64748b;
-    margin-top: 0.35rem;
-    font-weight: 500;
-}
-
-/* Progress bar */
-.progress-container {
+/* Minimalist Stepper (Image 2 style) */
+.minimal-stepper-container {
     position: relative;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.25rem;
+    padding: 0 0.25rem;
 }
-.progress-track {
+.minimal-stepper-track {
     position: absolute;
-    top: 20px;
-    left: 40px;
-    right: 40px;
-    height: 3px;
-    background: #e2e8f0;
+    top: 8px;
+    left: 0.5rem;
+    right: 0.5rem;
+    height: 2px;
+    background: #E2E8F0;
     z-index: 1;
 }
-.progress-fill {
+.minimal-stepper-fill {
     height: 100%;
-    background: linear-gradient(90deg, #059669, #10b981);
+    background: #A7C123;
     transition: width 0.35s ease;
 }
-.steps-list {
+.minimal-stepper-steps {
     position: relative;
     z-index: 2;
     display: flex;
     justify-content: space-between;
-}
-.step-dot {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
+}
+.minimal-step-node {
     background: none;
     border: none;
+    padding: 2px;
     cursor: pointer;
-    padding: 0;
-    transition: transform 0.2s;
-}
-.step-dot:disabled {
-    cursor: not-allowed;
-}
-.dot-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #f8fafc;
-    border: 2px solid #cbd5e1;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
-    color: #64748b;
+    transition: all 0.2s;
+}
+.minimal-step-node:disabled {
+    cursor: default;
+}
+.node-bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #CBD5E1;
     transition: all 0.25s ease;
+    display: block;
 }
-.step-dot.active .dot-icon {
-    background: #059669;
-    border-color: #059669;
-    color: #ffffff;
-    box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.2);
-    transform: scale(1.08);
+.minimal-step-node.active .node-bullet {
+    width: 14px;
+    height: 14px;
+    background: #A7C123;
+    box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 5px #242619;
 }
-.step-dot.done .dot-icon {
-    background: #ecfdf5;
-    border-color: #059669;
-    color: #059669;
-    font-weight: bold;
+.minimal-step-node.done .node-bullet {
+    width: 10px;
+    height: 10px;
+    background: #242619;
 }
-.dot-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #64748b;
-    transition: color 0.2s;
+.minimal-step-label-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.75rem;
 }
-.step-dot.active .dot-label {
-    color: #059669;
-    font-weight: 700;
-}
-.step-dot.done .dot-label {
-    color: #0f172a;
-}
-@media (max-width: 640px) {
-    .dot-label {
-        display: none;
-    }
-    .dot-icon {
-        width: 34px;
-        height: 34px;
-        font-size: 0.85rem;
-    }
-    .progress-track {
-        top: 17px;
-        left: 20px;
-        right: 20px;
-    }
-}
-.step-counter {
-    text-align: center;
-    font-size: 0.8rem;
+.step-badge {
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #059669;
-    margin-top: 1rem;
+    letter-spacing: 0.06em;
+    color: #242619;
+    background: #F1F7D7;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(167, 193, 35, 0.3);
+    font-family: 'Sora', sans-serif;
 }
 
-/* Headings */
-.step-heading {
-    text-align: center;
+/* Headings (Image 2 style: "Let's get started") */
+.step-heading-minimal {
     margin-bottom: 2rem;
 }
-.step-icon-big {
-    font-size: 2.25rem;
-    margin-bottom: 0.5rem;
-}
-.step-heading h2 {
-    font-size: 1.5rem;
+.form-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.65rem;
     font-weight: 800;
-    color: #0f172a;
-    margin-bottom: 0.4rem;
+    color: #242619;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
 }
-.step-heading p {
-    font-size: 0.925rem;
-    color: #64748b;
+.form-subtitle {
+    font-size: 0.9rem;
+    color: #64748B;
+    line-height: 1.5;
 }
 
-/* Form inputs & grids */
+/* Form Inputs & Grids (Image 2 style) */
 .form-grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -717,16 +636,17 @@
     flex-direction: column;
 }
 .field-group label {
-    font-size: 0.85rem;
+    font-size: 0.825rem;
     font-weight: 600;
-    color: #334155;
-    margin-bottom: 0.4rem;
+    color: #475569;
+    margin-bottom: 0.45rem;
     display: flex;
     align-items: center;
     gap: 0.35rem;
+    font-family: inherit;
 }
 .required {
-    color: #dc2626;
+    color: #DC2626;
 }
 .field-group input[type="text"],
 .field-group input[type="email"],
@@ -735,48 +655,54 @@
 .field-group select,
 .field-group textarea {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.85rem 1.1rem;
     border-radius: 12px;
-    border: 1.5px solid #cbd5e1;
-    background: #ffffff;
+    border: 1.5px solid #E2E8F0;
+    background: #FFFFFF;
     font-size: 0.925rem;
-    color: #0f172a;
-    transition: all 0.2s;
+    color: #242619;
+    transition: all 0.2s ease;
     outline: none;
     font-family: inherit;
+    box-sizing: border-box;
+}
+.field-group input::placeholder,
+.field-group textarea::placeholder {
+    color: #94A3B8;
 }
 .field-group input:focus,
 .field-group select:focus,
 .field-group textarea:focus {
-    border-color: #059669;
-    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+    border-color: #A7C123;
+    box-shadow: 0 0 0 3px rgba(167, 193, 35, 0.18);
+    background: #FFFFFF;
 }
 .input-error {
-    border-color: #dc2626 !important;
-    background-color: #fff5f5 !important;
+    border-color: #EF4444 !important;
+    background-color: #FEF2F2 !important;
 }
 .field-error {
     font-size: 0.78rem;
-    color: #dc2626;
+    color: #EF4444;
     margin-top: 0.35rem;
     font-weight: 500;
 }
 .field-hint {
     font-size: 0.75rem;
-    color: #94a3b8;
+    color: #94A3B8;
     margin-top: 0.25rem;
     text-align: right;
 }
 
-/* Photo Upload */
+/* Photo Upload (Image 2 inspired clean avatar zone) */
 .photo-upload-zone {
     position: relative;
-    width: 140px;
-    height: 140px;
+    width: 110px;
+    height: 110px;
     margin: 0 auto 1.75rem auto;
-    border-radius: 50%;
-    border: 2px dashed #94a3b8;
-    background: #f8fafc;
+    border-radius: 24px;
+    border: 2px dashed #CBD5E1;
+    background: #F8FAF0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -785,8 +711,8 @@
     transition: all 0.2s;
 }
 .photo-upload-zone:hover {
-    border-color: #059669;
-    background: #f0fdf4;
+    border-color: #A7C123;
+    background: #F1F7D7;
 }
 .photo-placeholder {
     display: flex;
@@ -794,18 +720,22 @@
     align-items: center;
     text-align: center;
     padding: 0.5rem;
-    font-size: 0.72rem;
-    color: #64748b;
+    color: #64748B;
     pointer-events: none;
 }
 .photo-icon {
-    font-size: 1.6rem;
-    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+}
+.photo-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #242619;
 }
 .photo-hint {
     font-size: 0.65rem;
-    color: #94a3b8;
-    margin-top: 0.2rem;
+    color: #94A3B8;
+    margin-top: 0.15rem;
 }
 .photo-preview {
     width: 100%;
@@ -821,26 +751,26 @@
     margin-top: 0.35rem;
 }
 .tag-choice, .reason-tag {
-    padding: 0.5rem 0.9rem;
+    padding: 0.5rem 0.95rem;
     border-radius: 9999px;
-    background: #f1f5f9;
+    background: #F8FAFC;
     color: #334155;
     font-size: 0.825rem;
     font-weight: 600;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #E2E8F0;
     cursor: pointer;
     transition: all 0.15s ease;
     user-select: none;
 }
 .tag-choice:hover, .reason-tag:hover {
-    background: #e2e8f0;
-    color: #0f172a;
+    background: #F1F5F9;
+    color: #242619;
 }
 .tag-choice.selected, .reason-tag.selected {
-    background: #059669;
-    color: #ffffff;
-    border-color: #059669;
-    box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+    background: #242619;
+    color: #D8F741;
+    border-color: #A7C123;
+    box-shadow: 0 2px 6px rgba(36, 38, 25, 0.2);
 }
 .reason-tag.disabled {
     opacity: 0.45;
@@ -849,12 +779,12 @@
 
 /* Project Cards */
 .no-projects-hint {
-    background: #f8fafc;
-    border: 1px dashed #cbd5e1;
+    background: #F8FAFC;
+    border: 1px dashed #CBD5E1;
     border-radius: 12px;
     padding: 1.5rem;
     text-align: center;
-    color: #64748b;
+    color: #64748B;
     font-size: 0.875rem;
     margin-bottom: 1.25rem;
 }
@@ -863,8 +793,8 @@
     margin-bottom: 0.35rem;
 }
 .project-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
     border-radius: 16px;
     padding: 1.25rem;
     margin-bottom: 1.25rem;
@@ -875,17 +805,17 @@
     align-items: center;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #E2E8F0;
 }
 .project-number {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #0f172a;
+    color: #242619;
 }
 .btn-remove {
     background: none;
     border: none;
-    color: #dc2626;
+    color: #DC2626;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
@@ -895,27 +825,27 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.25rem;
-    background: #f1f5f9;
-    border: 1.5px dashed #94a3b8;
+    background: #F8FAF0;
+    border: 1.5px dashed #A7C123;
     border-radius: 12px;
     font-size: 0.875rem;
     font-weight: 600;
-    color: #334155;
+    color: #242619;
     cursor: pointer;
     transition: all 0.2s;
     width: 100%;
     justify-content: center;
 }
 .btn-add-project:hover {
-    background: #e2e8f0;
-    border-color: #64748b;
-    color: #0f172a;
+    background: #F1F7D7;
+    border-color: #242619;
+    color: #242619;
 }
 
 /* Online earnings toggle */
 .online-earnings-section {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: #F8FAF0;
+    border: 1px solid rgba(167, 193, 35, 0.25);
     border-radius: 16px;
     padding: 1.25rem;
     margin-top: 1.5rem;
@@ -927,7 +857,7 @@
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 600;
-    color: #1e293b;
+    color: #242619;
 }
 .toggle-label input {
     display: none;
@@ -935,7 +865,7 @@
 .toggle-box {
     width: 44px;
     height: 24px;
-    background: #cbd5e1;
+    background: #CBD5E1;
     border-radius: 9999px;
     position: relative;
     transition: background 0.2s;
@@ -944,7 +874,7 @@
 .toggle-knob {
     width: 18px;
     height: 18px;
-    background: #ffffff;
+    background: #FFFFFF;
     border-radius: 50%;
     position: absolute;
     top: 3px;
@@ -953,7 +883,7 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 .toggle-label input:checked + .toggle-box {
-    background: #059669;
+    background: #A7C123;
 }
 .toggle-label input:checked + .toggle-box .toggle-knob {
     transform: translateX(20px);
@@ -961,7 +891,7 @@
 .earnings-fields {
     margin-top: 1.25rem;
     padding-top: 1.25rem;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid #E2E8F0;
 }
 
 /* Social icons */
@@ -975,8 +905,8 @@
     font-size: 0.75rem;
     font-weight: 800;
 }
-.social-icon.linkedin { background: #0077b5; color: #fff; }
-.social-icon.facebook { background: #1877f2; color: #fff; }
+.social-icon.linkedin { background: #0077B5; color: #fff; }
+.social-icon.facebook { background: #1877F2; color: #fff; }
 .social-icon.twitter { background: #000000; color: #fff; }
 
 /* Review step */
@@ -986,8 +916,8 @@
     gap: 1.25rem;
 }
 .review-block {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
     border-radius: 14px;
     padding: 1.25rem;
 }
@@ -997,17 +927,18 @@
     align-items: center;
     font-size: 0.925rem;
     font-weight: 700;
-    color: #0f172a;
+    color: #242619;
     margin-bottom: 0.85rem;
     padding-bottom: 0.4rem;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #E2E8F0;
+    font-family: 'Sora', sans-serif;
 }
 .btn-edit-step {
     background: none;
     border: none;
     font-size: 0.78rem;
     font-weight: 700;
-    color: #059669;
+    color: #A7C123;
     cursor: pointer;
     text-decoration: underline;
 }
@@ -1024,30 +955,30 @@
 .rl {
     font-size: 0.75rem;
     font-weight: 600;
-    color: #64748b;
+    color: #64748B;
     display: block;
 }
 .rv {
     font-size: 0.875rem;
-    color: #0f172a;
+    color: #242619;
     font-weight: 500;
 }
 .review-text {
     margin-top: 0.75rem;
     font-size: 0.85rem;
     color: #334155;
-    background: #ffffff;
+    background: #FFFFFF;
     padding: 0.75rem;
     border-radius: 8px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #E2E8F0;
 }
 
 /* CGV */
 .cgv-block {
     margin-top: 1.75rem;
     padding: 1rem;
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
+    background: #F8FAF0;
+    border: 1px solid rgba(167, 193, 35, 0.4);
     border-radius: 12px;
 }
 .cgv-label {
@@ -1055,33 +986,34 @@
     align-items: flex-start;
     gap: 0.75rem;
     font-size: 0.85rem;
-    color: #166534;
+    color: #242619;
     cursor: pointer;
 }
 .cgv-label input {
     margin-top: 0.2rem;
-    accent-color: #059669;
+    accent-color: #A7C123;
 }
 .cgv-label a {
-    color: #059669;
+    color: #A7C123;
     text-decoration: underline;
     font-weight: 600;
 }
 
-/* Navigation buttons */
+/* Navigation buttons (Image 2 style: prominent primary button) */
 .form-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2.5rem;
+    margin-top: 2.25rem;
     padding-top: 1.5rem;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid #F1F5F9;
+    gap: 1rem;
 }
 .btn-prev {
-    padding: 0.75rem 1.5rem;
+    padding: 0.85rem 1.6rem;
     border-radius: 12px;
-    border: 1.5px solid #cbd5e1;
-    background: #ffffff;
+    border: 1.5px solid #E2E8F0;
+    background: #FFFFFF;
     color: #475569;
     font-size: 0.875rem;
     font-weight: 600;
@@ -1090,31 +1022,36 @@
     transition: all 0.2s;
 }
 .btn-prev:hover {
-    background: #f1f5f9;
-    color: #0f172a;
+    background: #F8FAFC;
+    color: #242619;
+    border-color: #CBD5E1;
 }
 .btn-next, .btn-submit {
-    padding: 0.75rem 2rem;
+    padding: 0.9rem 2.25rem;
     border-radius: 12px;
     border: none;
-    background: #059669;
-    color: #ffffff;
-    font-size: 0.925rem;
+    background: #242619;
+    color: #FFFFFF;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(36, 38, 25, 0.2);
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 0.6rem;
+    letter-spacing: 0.02em;
 }
 .btn-next:hover, .btn-submit:hover {
-    background: #047857;
+    background: #A7C123;
+    color: #242619;
+    box-shadow: 0 6px 18px rgba(167, 193, 35, 0.35);
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
 }
 .btn-next:disabled, .btn-submit:disabled {
-    opacity: 0.65;
+    opacity: 0.6;
     cursor: not-allowed;
     transform: none;
 }
@@ -1124,11 +1061,11 @@
     max-width: 650px;
     margin: 3rem auto;
     background: #ffffff;
-    border-radius: 24px;
+    border-radius: 28px;
     padding: 3rem;
     text-align: center;
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e2e8f0;
+    box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.06);
+    border: 1px solid #E2E8F0;
 }
 .confetti-icon {
     font-size: 3.5rem;
@@ -1137,20 +1074,21 @@
 .postuler-success h1 {
     font-size: 1.75rem;
     font-weight: 800;
-    color: #0f172a;
+    color: #242619;
     margin-bottom: 0.75rem;
+    font-family: 'Sora', sans-serif;
 }
 .postuler-success p {
     font-size: 0.95rem;
-    color: #64748b;
+    color: #64748B;
     line-height: 1.6;
 }
 .success-ref {
     display: inline-flex;
     flex-direction: column;
     gap: 0.25rem;
-    background: #ecfdf5;
-    border: 1.5px solid #a7f3d0;
+    background: #F1F7D7;
+    border: 1.5px solid #A7C123;
     border-radius: 14px;
     padding: 0.75rem 2rem;
     margin: 1.75rem 0;
@@ -1159,50 +1097,54 @@
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #047857;
+    color: #242619;
+    font-family: 'Sora', sans-serif;
 }
 .success-ref .ref-code {
     font-size: 1.5rem;
     font-weight: 800;
-    color: #065f46;
+    color: #242619;
     font-family: monospace;
     letter-spacing: 0.05em;
 }
 .success-note {
     font-size: 0.85rem !important;
-    color: #64748b;
+    color: #64748B;
     margin-bottom: 2rem;
 }
 .btn-success-home {
     display: inline-block;
     padding: 0.85rem 2rem;
-    background: #0f172a;
-    color: #ffffff;
+    background: #242619;
+    color: #D8F741;
     border-radius: 12px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.925rem;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    font-family: 'Sora', sans-serif;
 }
 .btn-success-home:hover {
-    background: #1e293b;
+    background: #A7C123;
+    color: #242619;
 }
 
 /* Alert error box */
 .alert-errors {
-    background: #fef2f2;
-    border: 1px solid #fecaca;
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
     border-radius: 14px;
     padding: 1rem 1.25rem;
     margin-bottom: 1.75rem;
     display: flex;
     gap: 0.85rem;
-    color: #991b1b;
+    color: #991B1B;
     font-size: 0.875rem;
 }
 .alert-errors strong {
     display: block;
     margin-bottom: 0.35rem;
+    font-family: 'Sora', sans-serif;
 }
 .alert-errors ul {
     margin: 0;
