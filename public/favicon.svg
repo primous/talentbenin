@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" width="64" height="64">
+  <defs>
+    <filter id="tc-fav-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <linearGradient id="fav-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2A2D1D" />
+      <stop offset="100%" stop-color="#1B1C13" />
+    </linearGradient>
+
+    <linearGradient id="f-tr" x1="0.85" y1="0.1" x2="0.15" y2="0.9">
+      <stop offset="0%" stop-color="#F2FFAA" />
+      <stop offset="35%" stop-color="#D8F741" />
+      <stop offset="100%" stop-color="#9EBF17" />
+    </linearGradient>
+    <linearGradient id="f-tl" x1="0.15" y1="0.15" x2="0.85" y2="0.85">
+      <stop offset="0%" stop-color="#C5E62E" />
+      <stop offset="100%" stop-color="#8BA717" />
+    </linearGradient>
+    <linearGradient id="f-bl" x1="0.15" y1="0.85" x2="0.85" y2="0.15">
+      <stop offset="0%" stop-color="#A5C227" />
+      <stop offset="100%" stop-color="#6F8313" />
+    </linearGradient>
+    <linearGradient id="f-br" x1="0.85" y1="0.85" x2="0.15" y2="0.15">
+      <stop offset="0%" stop-color="#BFDC2D" />
+      <stop offset="100%" stop-color="#8AA417" />
+    </linearGradient>
+  </defs>
+
+  <!-- Luxury Squircle Badge -->
+  <rect width="64" height="64" rx="16" fill="url(#fav-bg)" />
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="15.25" stroke="rgba(216,247,65,0.22)" stroke-width="1.5" />
+
+  <!-- 4 Leaves Emblem centered inside squircle -->
+  <!-- Original emblem box: [40, 38] to [100, 100], center is (70, 69) -->
+  <!-- We scale by 0.72 and shift so center (70,69) maps to (32, 32) -->
+  <g transform="translate(32, 32) scale(0.68) translate(-71, -70)">
+    <!-- Aura -->
+    <path d="M 72,69 C 90.0,70.2 98.9,57.2 99,41 C 83.7,42.5 71.2,52.1 72,69 Z" fill="#D8F741" opacity="0.6" filter="url(#tc-fav-glow)" />
+
+    <!-- 4 Leaves -->
+    <path d="M 72,69 C 90.0,70.2 98.9,57.2 99,41 C 83.7,42.5 71.2,52.1 72,69 Z" fill="url(#f-tr)" />
+    <path d="M 61,68 C 60.9,57.4 52.7,51.2 43,50 C 43.7,60.1 49.8,68.4 61,68 Z" fill="url(#f-tl)" />
+    <path d="M 61,81 C 53.7,80.9 49.6,86.4 49,93 C 55.1,92.0 60.5,87.8 61,81 Z" fill="url(#f-bl)" />
+    <path d="M 73,81 C 72.6,92.2 80.9,98.3 91,99 C 90.7,88.5 84.7,80.1 73,81 Z" fill="url(#f-br)" />
+  </g>
+</svg>

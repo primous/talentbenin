@@ -8,13 +8,8 @@
             
             <!-- Brand Column -->
             <div class="lg:col-span-4 space-y-4">
-                <a href="{{ route('home') }}" class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-[#D8F741] flex items-center justify-center text-[#242619] font-display font-extrabold text-lg shadow-sm">
-                        TC
-                    </div>
-                    <span class="font-display font-extrabold text-2xl tracking-tight text-white">
-                        TALENT<span class="text-[#D8F741] font-black">.</span>CLUB
-                    </span>
+                <a href="{{ route('home') }}" class="inline-flex items-center group focus:outline-none" aria-label="Talent Club Home">
+                    <x-logo theme="dark" class="h-11 sm:h-12 w-auto transition-transform duration-200 group-hover:scale-[1.02]" />
                 </a>
                 <p class="text-slate-300 text-sm max-w-sm leading-relaxed font-sans">
                     « Réunir les talents. Créer les connexions. Construire les opportunités. »

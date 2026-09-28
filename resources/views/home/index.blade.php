@@ -1455,10 +1455,10 @@
                 const customIcon = L.divIcon({
                     className: 'tc-custom-pin',
                     html: `
-                        <div style="position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                        <div style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
                             <span style="position: absolute; width: 100%; height: 100%; border-radius: 50%; background: rgba(216, 247, 65, 0.45); animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;"></span>
-                            <div style="position: relative; width: 34px; height: 34px; border-radius: 50%; background: #242619; border: 3px solid #D8F741; color: #D8F741; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 11px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
-                                TC
+                            <div style="position: relative; width: 36px; height: 36px; border-radius: 50%; background: #242619; border: 2.5px solid #D8F741; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                                <img src="{{ asset('images/logo-icon.svg') }}" style="width: 22px; height: 22px; object-fit: contain;" alt="Talent Club" />
                             </div>
                         </div>
                     `,

@@ -3,18 +3,8 @@
         <div class="flex items-center justify-between h-20">
             <!-- Brand Logo -->
             <div class="flex items-center gap-8">
-                <a href="{{ route('home') }}" class="flex items-center gap-3 group focus:outline-none">
-                    <div class="w-10 h-10 rounded-xl bg-[#242619] flex items-center justify-center text-[#D8F741] font-display font-extrabold text-lg shadow-sm border border-[#242619] group-hover:scale-105 transition-transform duration-200">
-                        TC
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-display font-extrabold text-xl tracking-tight text-[#242619] group-hover:text-[#A7C123] transition-colors">
-                            TALENT<span class="text-[#A7C123] font-black">.</span>CLUB
-                        </span>
-                        <span class="text-[10px] font-semibold uppercase tracking-widest text-[#242619]/60 -mt-1">
-                            Bénin Digital Hub
-                        </span>
-                    </div>
+                <a href="{{ route('home') }}" class="flex items-center gap-2 group focus:outline-none" aria-label="Talent Club Home">
+                    <x-logo theme="light" class="h-10 sm:h-11 w-auto transition-transform duration-200 group-hover:scale-[1.02]" />
                 </a>
 
                 <!-- Desktop Navigation Links -->

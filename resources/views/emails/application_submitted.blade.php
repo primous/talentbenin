@@ -27,18 +27,12 @@
                 <!-- Main Container (600px) -->
                 <table class="email-container" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #ffffff; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 36px rgba(36, 38, 25, 0.08); border: 1px solid #E2E8F0;">
                     
-                    <!-- 1. Top Logo Bar (Image 1 style: clean white header with centered brand logo) -->
+                    <!-- 1. Top Logo Bar -->
                     <tr>
-                        <td align="center" style="background-color: #ffffff; padding: 26px 30px 22px 30px; border-bottom: 1px solid #F1F5F9;">
-                            <table border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td align="center">
-                                        <div style="display: inline-block; background-color: #242619; color: #ffffff; padding: 8px 20px; border-radius: 12px; font-family: 'Sora', sans-serif; font-size: 19px; font-weight: 900; letter-spacing: -0.5px;">
-                                            TALENT<span style="color: #D8F741;">.</span>CLUB
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+                        <td align="center" style="background-color: #ffffff; padding: 24px 30px; border-bottom: 1px solid #F1F5F9;">
+                            <a href="{{ route('home') }}" target="_blank" style="text-decoration: none; display: inline-block;">
+                                <img src="{{ asset('images/logo-dark.svg') }}" width="190" height="60" alt="Talent Club" style="display: block; border: 0; width: 190px; height: auto; margin: 0 auto;" />
+                            </a>
                         </td>
                     </tr>
 

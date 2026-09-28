@@ -6,8 +6,8 @@
                 {{-- Decorative top bar --}}
                 <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#A7C123] via-[#D8F741] to-[#A7C123]"></div>
 
-                <div class="w-16 h-16 rounded-2xl bg-[#F1F7D7] border border-[#A7C123]/40 text-[#242619] flex items-center justify-center text-3xl mx-auto mb-6 shadow-sm">
-                    ✨
+                <div class="w-16 h-16 rounded-2xl bg-[#242619] border border-[#D8F741]/40 flex items-center justify-center mx-auto mb-6 shadow-md">
+                    <x-logo-icon class="w-10 h-10" />
                 </div>
 
                 <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#F1F7D7] border border-[#A7C123]/30 text-[#242619] mb-3">

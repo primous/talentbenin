@@ -4,8 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TALENT CLUB | L'écosystème d'élite des talents béninois</title>
-    <meta name="description" content="Découvrez, valorisez et connectez les jeunes talents béninois avec des entreprises, des particuliers et des opportunités d'affaires uniques.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+    <!-- Favicon & Brand Icons -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="alternate icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <meta name="theme-color" content="#242619">
+
+    <!-- Open Graph & Brand Meta -->
+    <meta property="og:title" content="TALENT CLUB | L'écosystème d'élite des talents béninois">
+    <meta property="og:description" content="Découvrez, valorisez et connectez les jeunes talents béninois avec des entreprises et opportunités d'affaires.">
+    <meta property="og:image" content="{{ asset('apple-touch-icon.png') }}">
+    <meta property="og:type" content="website">
 
     <!-- Google Fonts: Sora (Titres) & Montserrat (Texte) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
